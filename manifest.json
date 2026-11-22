@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "YT Ultrawide Fit",
+  "version": "1.0.0",
+  "description": "Zooms YouTube videos that have baked-in black bars to fill an ultrawide screen in fullscreen; keeps borders on normal 16:9 videos.",
+  "permissions": ["storage"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "YT Ultrawide Fit",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://www.youtube-nocookie.com/*"
+      ],
+      "js": ["detector.js", "content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}

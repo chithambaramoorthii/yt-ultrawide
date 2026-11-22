@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; width: 300px; font: 13px/1.4 system-ui, sans-serif; background: #18181b; color: #e4e4e7; }
+  header { padding: 12px 14px; border-bottom: 1px solid #2e2e33; font-weight: 600; font-size: 14px; }
+  section { padding: 10px 14px; border-bottom: 1px solid #2e2e33; }
+  label.row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 6px 0; }
+  .hint { color: #a1a1aa; font-size: 12px; margin: 2px 0 6px; }
+  input[type=range] { width: 120px; }
+  output { min-width: 34px; text-align: right; font-variant-numeric: tabular-nums; }
+  dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; margin: 0; }
+  dt { color: #a1a1aa; }
+  dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+  #reason { margin-top: 8px; color: #7dd3fc; }
+  kbd { background: #2e2e33; border-radius: 3px; padding: 0 5px; }
+</style>
+</head>
+<body>
+  <header>YT Ultrawide Fit</header>
+
+  <section>
+    <label class="row">Enabled <input type="checkbox" id="enabled"></label>
+    <label class="row">Zoom only in fullscreen <input type="checkbox" id="fullscreenOnly"></label>
+    <label class="row">Show on-screen messages <input type="checkbox" id="showToasts"></label>
+  </section>
+
+  <section>
+    <label class="row">Zoom content wider than
+      <span><input type="range" id="minRatio" min="1.80" max="2.30" step="0.05"> <output id="minRatioOut"></output></span>
+    </label>
+    <div class="hint">16:9 = 1.78 · your screen = 2.39 · cinema = 2.39–2.40</div>
+    <label class="row">Max crop to fill
+      <span><input type="range" id="maxCrop" min="0" max="8" step="0.5"> <output id="maxCropOut"></output></span>
+    </label>
+    <div class="hint">Removes thin leftover borders when the video is almost your screen's shape. 0 = never crop.</div>
+    <label class="row">Black level
+      <span><input type="range" id="blackLevel" min="8" max="48" step="2"> <output id="blackLevelOut"></output></span>
+    </label>
+    <div class="hint">Raise this if bars are missed; lower it if dark scenes get zoomed.</div>
+  </section>
+
+  <section>
+    <dl>
+      <dt>Mode</dt><dd id="s-mode">–</dd>
+      <dt>Video file</dt><dd id="s-video">–</dd>
+      <dt>Baked-in bars</dt><dd id="s-bars">–</dd>
+      <dt>Real content</dt><dd id="s-content">–</dd>
+      <dt>Zoom</dt><dd id="s-zoom">–</dd>
+    </dl>
+    <div id="reason">Open a YouTube video.</div>
+    <div class="hint" style="margin-top:8px">Press <kbd>Z</kbd> on the video to cycle Auto → Force fill → Off.</div>
+  </section>
+
+  <script src="popup.js"></script>
+</body>
+</html>
